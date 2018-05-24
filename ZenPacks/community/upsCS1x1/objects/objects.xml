@@ -1,0 +1,5460 @@
+<?xml version="1.0"?>
+<objects>
+<!-- ('', 'zport', 'dmd', 'Devices', 'Power', 'UPS', 'CS1x1') -->
+<object id='/zport/dmd/Devices/Power/UPS/CS1x1' module='Products.ZenModel.DeviceClass' class='DeviceClass'>
+<property visible="True" type="lines" id="zCollectorPlugins" >
+['zenoss.snmp.NewDeviceMap', 'zenoss.snmp.DeviceMap', 'zenoss.snmp.InterfaceMap', 'zenoss.snmp.RouteMap', 'community.snmp.upsDeviceMap', 'community.snmp.upsBatteryMap', 'community.snmp.upsBypassMap', 'community.snmp.upsInputMap', 'community.snmp.upsOutputMap']
+</property>
+<property visible="True" type="string" id="zPythonClass" >
+ZenPacks.community.upsCS1x1.upsDevice
+</property>
+<property visible="True" type="lines" id="zDeviceTemplates" >
+['Device', 'upsInfo']
+</property>
+<tomanycont id='rrdTemplates'>
+<object id='upsBattery' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+Products.ZenModel.Device
+</property>
+<tomanycont id='datasources'>
+<object id='upsBatteryCurrent' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.2.6
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsBatteryCurrent' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsBatteryStatus' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.2.1
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsBatteryStatus' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsBatteryTemperature' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.2.7
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsBatteryTemperature' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsBatteryVoltage' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.2.5
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsBatteryVoltage' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsEstimatedChargeRemaining' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.2.4
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsEstimatedChargeRemaining' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsEstimatedMinutesRemaining' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.2.3
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsEstimatedMinutesRemaining' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsSecondsOnBattery' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.2.2
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsSecondsOnBattery' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+<tomanycont id='thresholds'>
+<object id='BatteryStatus' module='Products.ZenModel.MinMaxThreshold' class='MinMaxThreshold'>
+<property type="string" id="eventClass" mode="w" >
+/HW/Power/UPS
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property label="DataPoints" type="lines" id="dsnames" mode="w" >
+['upsBatteryStatus_upsBatteryStatus']
+</property>
+<property label="Enabled" type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="minval" mode="w" >
+2
+</property>
+<property type="string" id="maxval" mode="w" >
+2
+</property>
+<property type="int" id="escalateCount" mode="w" >
+0
+</property>
+</object>
+</tomanycont>
+<tomanycont id='graphDefs'>
+<object id='ChargeRemaining' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Percent
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+3
+</property>
+<tomanycont id='graphPoints'>
+<object id='Charge Remaining' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsEstimatedChargeRemaining_upsEstimatedChargeRemaining
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Current' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Amps
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+5
+</property>
+<tomanycont id='graphPoints'>
+<object id='Battery Current' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsBatteryCurrent_upsBatteryCurrent
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='MinutesRemaining' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Mins
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+2
+</property>
+<tomanycont id='graphPoints'>
+<object id='Minutes Remaining' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsEstimatedMinutesRemaining_upsEstimatedMinutesRemaining
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='OnBattery' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Secs
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+1
+</property>
+<tomanycont id='graphPoints'>
+<object id='Seconds On Battery' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsSecondsOnBattery_upsSecondsOnBattery
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Status' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+ID
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+0
+</property>
+<property type="int" id="maxy" mode="w" >
+5
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<tomanycont id='graphPoints'>
+<object id='Battery Status' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsBatteryStatus_upsBatteryStatus
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+<object id='Info' module='Products.ZenModel.CommentGraphPoint' class='CommentGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+1
+</property>
+<property type="string" id="text" mode="w" >
+unknown(1), batteryNormal(2), batteryLow(3), batteryDepleted(4)
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Temperature' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Celsius
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+6
+</property>
+<tomanycont id='graphPoints'>
+<object id='Battery Temperature' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsBatteryTemperature_upsBatteryTemperature
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Voltage' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Volt
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+4
+</property>
+<tomanycont id='graphPoints'>
+<object id='Battery Voltage' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsBatteryVoltage_upsBatteryVoltage
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+</object>
+<object id='upsBypass' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+Products.ZenModel.Device
+</property>
+<tomanycont id='datasources'>
+<object id='upsBypassCurrent' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.5.3.1.3
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsBypassCurrent' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsBypassPower' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.5.3.1.4
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsBypassPower' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsBypassVoltage' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.5.3.1.2
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsBypassVoltage' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+<tomanycont id='graphDefs'>
+<object id='Current' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Amps
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+1
+</property>
+<tomanycont id='graphPoints'>
+<object id='Bypass Current' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsBypassCurrent_upsBypassCurrent
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Power' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Watt
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+2
+</property>
+<tomanycont id='graphPoints'>
+<object id='Bypass Power' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsBypassPower_upsBypassPower
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Voltage' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Volt
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<tomanycont id='graphPoints'>
+<object id='Bypass Voltage' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsBypassVoltage_upsBypassVoltage
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+</object>
+<object id='upsInfo' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+Products.ZenModel.Device
+</property>
+<tomanycont id='datasources'>
+<object id='sensorMan1Value' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.12.1.1.0
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='sensorMan1Value' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='sensorMan2Value' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.12.2.1.0
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='sensorMan2Value' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsAlarmsPresent' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.6.1.0
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsAlarmsPresent' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsInputLineBads' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.3.1.0
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsInputLineBads' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+<tomanycont id='thresholds'>
+<object id='Humidity' module='Products.ZenModel.MinMaxThreshold' class='MinMaxThreshold'>
+<property type="string" id="eventClass" mode="w" >
+/HW/Temperature
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property label="DataPoints" type="lines" id="dsnames" mode="w" >
+['sensorMan2Value_sensorMan2Value']
+</property>
+<property label="Enabled" type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="maxval" mode="w" >
+800
+</property>
+<property type="int" id="escalateCount" mode="w" >
+0
+</property>
+</object>
+<object id='Number of Alarm' module='Products.ZenModel.MinMaxThreshold' class='MinMaxThreshold'>
+<property type="string" id="eventClass" mode="w" >
+/Perf/Snmp
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property label="DataPoints" type="lines" id="dsnames" mode="w" >
+['upsAlarmsPresent_upsAlarmsPresent']
+</property>
+<property label="Enabled" type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="minval" mode="w" >
+0
+</property>
+<property type="string" id="maxval" mode="w" >
+0
+</property>
+<property type="int" id="escalateCount" mode="w" >
+0
+</property>
+</object>
+<object id='Temperature' module='Products.ZenModel.MinMaxThreshold' class='MinMaxThreshold'>
+<property type="string" id="eventClass" mode="w" >
+/HW/Temperature
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property label="DataPoints" type="lines" id="dsnames" mode="w" >
+['sensorMan1Value_sensorMan1Value']
+</property>
+<property label="Enabled" type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="maxval" mode="w" >
+300
+</property>
+<property type="int" id="escalateCount" mode="w" >
+0
+</property>
+</object>
+</tomanycont>
+<tomanycont id='graphDefs'>
+<object id='Alarms' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Number
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<tomanycont id='graphPoints'>
+<object id='Alarms Present' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsAlarmsPresent_upsAlarmsPresent
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Humidity' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Percent
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+3
+</property>
+<tomanycont id='graphPoints'>
+<object id='Humidity' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="rpn" mode="w" >
+10,/
+</property>
+<property type="string" id="dpName" mode="w" >
+sensorMan2Value_sensorMan2Value
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='InputLineBads' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Number
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+1
+</property>
+<tomanycont id='graphPoints'>
+<object id='Info' module='Products.ZenModel.CommentGraphPoint' class='CommentGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+1
+</property>
+<property type="string" id="text" mode="w" >
+The number of times the Input was out of tolerance in voltage or frequency.
+</property>
+</object>
+<object id='Input Line Bads' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsInputLineBads_upsInputLineBads
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Temperature' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Celsius
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+2
+</property>
+<tomanycont id='graphPoints'>
+<object id='Temperature' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="rpn" mode="w" >
+10,/
+</property>
+<property type="string" id="dpName" mode="w" >
+sensorMan1Value_sensorMan1Value
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+</object>
+<object id='upsInput' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+Products.ZenModel.Device
+</property>
+<tomanycont id='datasources'>
+<object id='upsInputCurrent' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.3.3.1.4
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsInputCurrent' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsInputFrequency' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.3.3.1.2
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsInputFrequency' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsInputTruePower' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.3.3.1.5
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsInputTruePower' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='upsInputVoltage' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.3.3.1.3
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='upsInputVoltage' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+<tomanycont id='graphDefs'>
+<object id='Current' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Amps
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+1
+</property>
+<tomanycont id='graphPoints'>
+<object id='Input Current' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="rpn" mode="w" >
+10,/
+</property>
+<property type="string" id="dpName" mode="w" >
+upsInputCurrent_upsInputCurrent
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Frequency' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Hz
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+3
+</property>
+<tomanycont id='graphPoints'>
+<object id='Input Frequency' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="rpn" mode="w" >
+10,/
+</property>
+<property type="string" id="dpName" mode="w" >
+upsInputFrequency_upsInputFrequency
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='TruePower' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Watt
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+2
+</property>
+<tomanycont id='graphPoints'>
+<object id='Input TruePower' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsInputTruePower_upsInputTruePower
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Voltage' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Volt
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<tomanycont id='graphPoints'>
+<object id='Input Voltage' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+upsInputVoltage_upsInputVoltage
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+</object>
+<object id='upsOutput' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+Products.ZenModel.Device
+</property>
+<tomanycont id='datasources'>
+<object id='OutputCurrent' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.4.4.1.3
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='OutputCurrent' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='OutputPercentLoad' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.4.4.1.5
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='OutputPercentLoad' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='OutputPower' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.4.4.1.4
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='OutputPower' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='OutputVoltage' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+SNMP
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="oid" mode="w" >
+.1.3.6.1.2.1.33.1.4.4.1.2
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='OutputVoltage' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+<tomanycont id='graphDefs'>
+<object id='Current' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Amps
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+1
+</property>
+<tomanycont id='graphPoints'>
+<object id='Current' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="rpn" mode="w" >
+10,/
+</property>
+<property type="string" id="dpName" mode="w" >
+OutputCurrent_OutputCurrent
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='PercentLoad' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Percent
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+3
+</property>
+<tomanycont id='graphPoints'>
+<object id='Percent Load' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+OutputPercentLoad_OutputPercentLoad
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Power' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Watt
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+2
+</property>
+<tomanycont id='graphPoints'>
+<object id='Power' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+OutputPower_OutputPower
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+<object id='Voltage' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="string" id="units" mode="w" >
+Volt
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+None
+</property>
+<property type="int" id="maxy" mode="w" >
+None
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<tomanycont id='graphPoints'>
+<object id='Voltage' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.0lf
+</property>
+<property type="string" id="legend" mode="w" >
+${graphPoint/id}
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+OutputVoltage_OutputVoltage
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+</object>
+<!-- ('', 'zport', 'dmd', 'Events', 'HW', 'Power', 'UPS', 'instances', 'upsTrapAlarmEntryAdded') -->
+<object id='/zport/dmd/Events/HW/Power/UPS/instances/upsTrapAlarmEntryAdded' module='Products.ZenEvents.EventClassInst' class='EventClassInst'>
+<property type="text" id="transform" mode="w" >
+for attr in evt.details._map.keys():
+    if attr == 'upsAlarmDescr':
+      evt.myFieldValue='.'.join(list(evt.details.getAll(attr)))
+      evt.summary = evt.eventClassKey + ": " + dmd.Mibs.oid2name(evt.myFieldValue, exactMatch=False)
+</property>
+<property type="string" id="eventClassKey" mode="w" >
+upsTrapAlarmEntryAdded
+</property>
+<property type="int" id="sequence" mode="w" >
+7
+</property>
+<property type="string" id="example" mode="w" >
+snmp trap upsTrapAlarmEntryAdded
+</property>
+</object>
+<!-- ('', 'zport', 'dmd', 'Events', 'HW', 'Power', 'UPS', 'instances', 'upsTrapAlarmEntryRemoved') -->
+<object id='/zport/dmd/Events/HW/Power/UPS/instances/upsTrapAlarmEntryRemoved' module='Products.ZenEvents.EventClassInst' class='EventClassInst'>
+<property type="text" id="transform" mode="w" >
+for attr in evt.details._map.keys():
+    if attr == 'upsAlarmDescr':
+      evt.myFieldValue='.'.join(list(evt.details.getAll(attr)))
+      evt.summary = evt.eventClassKey + ": " + dmd.Mibs.oid2name(evt.myFieldValue, exactMatch=False)
+</property>
+<property type="string" id="eventClassKey" mode="w" >
+upsTrapAlarmEntryRemoved
+</property>
+<property type="int" id="sequence" mode="w" >
+7
+</property>
+<property type="string" id="example" mode="w" >
+snmp trap upsTrapAlarmEntryRemoved
+</property>
+<property visible="True" type="int" id="zEventSeverity" >
+0
+</property>
+</object>
+<!-- ('', 'zport', 'dmd', 'Events', 'HW', 'Power', 'UPS', 'instances', 'upsTrapOnBattery') -->
+<object id='/zport/dmd/Events/HW/Power/UPS/instances/upsTrapOnBattery' module='Products.ZenEvents.EventClassInst' class='EventClassInst'>
+<property type="text" id="transform" mode="w" >
+mins = getattr(evt, 'upsEstimatedMinutesRemaining', '')
+evt.summary = 'The UPS is now operating on battery power, %s min remaining'%(mins)
+</property>
+<property type="string" id="eventClassKey" mode="w" >
+upsTrapOnBattery
+</property>
+<property type="int" id="sequence" mode="w" >
+7
+</property>
+<property type="string" id="example" mode="w" >
+snmp trap upsTrapOnBattery
+</property>
+</object>
+<!-- ('', 'zport', 'dmd', 'Events', 'HW', 'Power', 'UPS', 'instances', 'upsTrapTestCompleted') -->
+<object id='/zport/dmd/Events/HW/Power/UPS/instances/upsTrapTestCompleted' module='Products.ZenEvents.EventClassInst' class='EventClassInst'>
+<property type="string" id="eventClassKey" mode="w" >
+upsTrapTestCompleted
+</property>
+<property type="int" id="sequence" mode="w" >
+7
+</property>
+<property type="string" id="example" mode="w" >
+snmp trap upsTrapTestCompleted
+</property>
+<property visible="True" type="int" id="zEventSeverity" >
+2
+</property>
+</object>
+<!-- ('', 'zport', 'dmd', 'Mibs', 'mibs', 'UPS-MIB') -->
+<object id='/zport/dmd/Mibs/mibs/UPS-MIB' module='Products.ZenModel.MibModule' class='MibModule'>
+<property id='zendoc' type='string'>
+The MIB module to describe Uninterruptible Power
+Supplies.
+</property>
+<property type="string" id="language" mode="w" >
+SMIv2
+</property>
+<property type="string" id="contact" mode="w" >
+Jeffrey D. Case
+
+Postal: SNMP Research, Incorporated
+        3001 Kimberlin Heights Road
+        Knoxville, TN  37920
+        US
+
+   Tel: +1 615 573 1434
+   Fax: +1 615 573 9197
+
+E-mail: case@snmp.com
+</property>
+<property type="string" id="description" mode="w" >
+The MIB module to describe Uninterruptible Power
+Supplies.
+</property>
+<tomanycont id='nodes'>
+<object id='upsAlarm' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6
+</property>
+</object>
+<object id='upsAlarmAwaitingPower' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The UPS output is off and the UPS is awaiting the
+return of input power.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.21
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The UPS output is off and the UPS is awaiting the
+return of input power.
+</property>
+</object>
+<object id='upsAlarmBatteryBad' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+One or more batteries have been determined to require
+replacement.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+One or more batteries have been determined to require
+replacement.
+</property>
+</object>
+<object id='upsAlarmBypassBad' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The Bypass is out of tolerance.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.10
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The Bypass is out of tolerance.
+</property>
+</object>
+<object id='upsAlarmChargerFailed' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+An uncorrected problem has been detected within the
+UPS charger subsystem.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.13
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+An uncorrected problem has been detected within the
+UPS charger subsystem.
+</property>
+</object>
+<object id='upsAlarmCommunicationsLost' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A problem has been encountered in the communications
+between the agent and the UPS.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.20
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A problem has been encountered in the communications
+between the agent and the UPS.
+</property>
+</object>
+<object id='upsAlarmDepletedBattery' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The UPS will be unable to sustain the present load
+when and if the utility power is lost.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.4
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The UPS will be unable to sustain the present load
+when and if the utility power is lost.
+</property>
+</object>
+<object id='upsAlarmDescr' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A reference to an alarm description object.  The
+object referenced should not be accessible, but rather
+be used to provide a unique description of the alarm
+condition.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.2.1.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A reference to an alarm description object.  The
+object referenced should not be accessible, but rather
+be used to provide a unique description of the alarm
+condition.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsAlarmDiagnosticTestFailed' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The result of the last diagnostic test indicates a
+failure.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.19
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The result of the last diagnostic test indicates a
+failure.
+</property>
+</object>
+<object id='upsAlarmEntry' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+An entry containing information applicable to a
+particular alarm.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+row
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.2.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+An entry containing information applicable to a
+particular alarm.
+</property>
+</object>
+<object id='upsAlarmFanFailure' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The failure of one or more fans in the UPS has been
+detected.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.16
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The failure of one or more fans in the UPS has been
+detected.
+</property>
+</object>
+<object id='upsAlarmFuseFailure' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The failure of one or more fuses has been detected.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.17
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The failure of one or more fuses has been detected.
+</property>
+</object>
+<object id='upsAlarmGeneralFault' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A general fault in the UPS has been detected.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.18
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A general fault in the UPS has been detected.
+</property>
+</object>
+<object id='upsAlarmId' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A unique identifier for an alarm condition.  This
+value must remain constant.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.2.1.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A unique identifier for an alarm condition.  This
+value must remain constant.
+</property>
+<property type="string" id="access" mode="w" >
+noaccess
+</property>
+</object>
+<object id='upsAlarmInputBad' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+An input condition is out of tolerance.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.6
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+An input condition is out of tolerance.
+</property>
+</object>
+<object id='upsAlarmLowBattery' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The remaining battery run-time is less than or equal
+to upsConfigLowBattTime.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The remaining battery run-time is less than or equal
+to upsConfigLowBattTime.
+</property>
+</object>
+<object id='upsAlarmOnBattery' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The UPS is drawing power from the batteries.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The UPS is drawing power from the batteries.
+</property>
+</object>
+<object id='upsAlarmOnBypass' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The Bypass is presently engaged on the UPS.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.9
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The Bypass is presently engaged on the UPS.
+</property>
+</object>
+<object id='upsAlarmOutputBad' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+An output condition (other than OutputOverload) is
+out of tolerance.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.7
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+An output condition (other than OutputOverload) is
+out of tolerance.
+</property>
+</object>
+<object id='upsAlarmOutputOffAsRequested' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The UPS has shutdown as requested, i.e., the output
+is off.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.11
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The UPS has shutdown as requested, i.e., the output
+is off.
+</property>
+</object>
+<object id='upsAlarmOutputOverload' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The output load exceeds the UPS output capacity.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.8
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The output load exceeds the UPS output capacity.
+</property>
+</object>
+<object id='upsAlarmShutdownImminent' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The UPS will turn off power to the load in less than
+5 seconds; this may be either a timed shutdown or a
+low battery shutdown.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.23
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The UPS will turn off power to the load in less than
+5 seconds; this may be either a timed shutdown or a
+low battery shutdown.
+</property>
+</object>
+<object id='upsAlarmShutdownPending' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A upsShutdownAfterDelay countdown is underway.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.22
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A upsShutdownAfterDelay countdown is underway.
+</property>
+</object>
+<object id='upsAlarmTable' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A list of alarm table entries.  The table contains
+zero, one, or many rows at any moment, depending upon
+the number of alarm conditions in effect.  The table
+is initially empty at agent startup.  The agent
+creates a row in the table each time a condition is
+detected and deletes that row when that condition no
+longer pertains.  The agent creates the first row with
+upsAlarmId equal to 1, and increments the value of
+upsAlarmId each time a new row is created, wrapping to
+the first free value greater than or equal to 1 when
+the maximum value of upsAlarmId would otherwise be
+exceeded.  Consequently, after multiple operations,
+the table may become sparse, e.g., containing entries
+for rows 95, 100, 101, and 203 and the entries should
+not be assumed to be in chronological order because
+upsAlarmId might have wrapped.
+
+Alarms are named by an AutonomousType (OBJECT
+IDENTIFIER), upsAlarmDescr, to allow a single table to
+reflect well known alarms plus alarms defined by a
+particular implementation, i.e., as documented in the
+private enterprise MIB definition for the device.  No
+two rows will have the same value of upsAlarmDescr,
+since alarms define conditions.  In order to meet this
+requirement, care should be taken in the definition of
+alarm conditions to insure that a system cannot enter
+the same condition multiple times simultaneously.
+
+The number of rows in the table at any given time is
+reflected by the value of upsAlarmsPresent.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+table
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A list of alarm table entries.  The table contains
+zero, one, or many rows at any moment, depending upon
+the number of alarm conditions in effect.  The table
+is initially empty at agent startup.  The agent
+creates a row in the table each time a condition is
+detected and deletes that row when that condition no
+longer pertains.  The agent creates the first row with
+upsAlarmId equal to 1, and increments the value of
+upsAlarmId each time a new row is created, wrapping to
+the first free value greater than or equal to 1 when
+the maximum value of upsAlarmId would otherwise be
+exceeded.  Consequently, after multiple operations,
+the table may become sparse, e.g., containing entries
+for rows 95, 100, 101, and 203 and the entries should
+not be assumed to be in chronological order because
+upsAlarmId might have wrapped.
+
+Alarms are named by an AutonomousType (OBJECT
+IDENTIFIER), upsAlarmDescr, to allow a single table to
+reflect well known alarms plus alarms defined by a
+particular implementation, i.e., as documented in the
+private enterprise MIB definition for the device.  No
+two rows will have the same value of upsAlarmDescr,
+since alarms define conditions.  In order to meet this
+requirement, care should be taken in the definition of
+alarm conditions to insure that a system cannot enter
+the same condition multiple times simultaneously.
+
+The number of rows in the table at any given time is
+reflected by the value of upsAlarmsPresent.
+</property>
+</object>
+<object id='upsAlarmTempBad' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A temperature is out of tolerance.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.5
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A temperature is out of tolerance.
+</property>
+</object>
+<object id='upsAlarmTestInProgress' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A test is in progress, as initiated and indicated by
+the Test Group.  Tests initiated via other
+implementation-specific mechanisms can indicate the
+presence of the testing in the alarm table, if
+desired, via a OBJECT-IDENTITY macro in the MIB
+document specific to that implementation and are
+outside the scope of this OBJECT-IDENTITY.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.24
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A test is in progress, as initiated and indicated by
+the Test Group.  Tests initiated via other
+implementation-specific mechanisms can indicate the
+presence of the testing in the alarm table, if
+desired, via a OBJECT-IDENTITY macro in the MIB
+document specific to that implementation and are
+outside the scope of this OBJECT-IDENTITY.
+</property>
+</object>
+<object id='upsAlarmTime' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The value of sysUpTime when the alarm condition was
+detected.  If the alarm condition was detected at the
+time of agent startup and presumably existed before
+agent startup, the value of upsAlarmTime shall equal
+0.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.2.1.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The value of sysUpTime when the alarm condition was
+detected.  If the alarm condition was detected at the
+time of agent startup and presumably existed before
+agent startup, the value of upsAlarmTime shall equal
+0.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsAlarmUpsOffAsRequested' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The entire UPS has shutdown as commanded.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.12
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The entire UPS has shutdown as commanded.
+</property>
+</object>
+<object id='upsAlarmUpsOutputOff' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The output of the UPS is in the off state.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.14
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The output of the UPS is in the off state.
+</property>
+</object>
+<object id='upsAlarmUpsSystemOff' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The UPS system is in the off state.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3.15
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The UPS system is in the off state.
+</property>
+</object>
+<object id='upsAlarmsPresent' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The present number of active alarm conditions.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The present number of active alarm conditions.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsAutoRestart' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+Setting this object to 'on' will cause the UPS system
+to restart after a shutdown if the shutdown occurred
+during a power loss as a result of either a
+upsShutdownAfterDelay or an internal battery depleted
+condition.  Setting this object to 'off' will prevent
+the UPS system from restarting after a shutdown until
+an operator manually or remotely explicitly restarts
+it.  If the UPS is in a startup or reboot countdown,
+then the UPS will not restart until that delay has
+been satisfied.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.8.5
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+Setting this object to 'on' will cause the UPS system
+to restart after a shutdown if the shutdown occurred
+during a power loss as a result of either a
+upsShutdownAfterDelay or an internal battery depleted
+condition.  Setting this object to 'off' will prevent
+the UPS system from restarting after a shutdown until
+an operator manually or remotely explicitly restarts
+it.  If the UPS is in a startup or reboot countdown,
+then the UPS will not restart until that delay has
+been satisfied.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsBasicGroups' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.3.2.2
+</property>
+</object>
+<object id='upsBattery' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.2
+</property>
+</object>
+<object id='upsBatteryCurrent' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The present battery current.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.2.6
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The present battery current.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsBatteryStatus' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The indication of the capacity remaining in the UPS
+system's batteries.   A value of batteryNormal
+indicates that the remaining run-time is greater than
+upsConfigLowBattTime.  A value of batteryLow indicates
+that the remaining battery run-time is less than or
+equal to upsConfigLowBattTime.  A value of
+batteryDepleted indicates that the UPS will be unable
+to sustain the present load when and if the utility
+power is lost (including the possibility that the
+utility power is currently absent and the UPS is
+unable to sustain the output).
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.2.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The indication of the capacity remaining in the UPS
+system's batteries.   A value of batteryNormal
+indicates that the remaining run-time is greater than
+upsConfigLowBattTime.  A value of batteryLow indicates
+that the remaining battery run-time is less than or
+equal to upsConfigLowBattTime.  A value of
+batteryDepleted indicates that the UPS will be unable
+to sustain the present load when and if the utility
+power is lost (including the possibility that the
+utility power is currently absent and the UPS is
+unable to sustain the output).
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsBatteryTemperature' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The ambient temperature at or near the UPS Battery
+casing.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.2.7
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The ambient temperature at or near the UPS Battery
+casing.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsBatteryVoltage' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The magnitude of the present battery voltage.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.2.5
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The magnitude of the present battery voltage.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsBypass' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.5
+</property>
+</object>
+<object id='upsBypassCurrent' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The present bypass current.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.5.3.1.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The present bypass current.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsBypassEntry' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+An entry containing information applicable to a
+particular bypass input.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+row
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.5.3.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+An entry containing information applicable to a
+particular bypass input.
+</property>
+</object>
+<object id='upsBypassFrequency' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The present bypass frequency.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.5.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The present bypass frequency.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsBypassLineIndex' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The bypass line identifier.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.5.3.1.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The bypass line identifier.
+</property>
+<property type="string" id="access" mode="w" >
+noaccess
+</property>
+</object>
+<object id='upsBypassNumLines' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The number of bypass lines utilized in this device.
+This entry indicates the number of rows in the bypass
+table.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.5.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The number of bypass lines utilized in this device.
+This entry indicates the number of rows in the bypass
+table.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsBypassPower' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The present true power conveyed by the bypass.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.5.3.1.4
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The present true power conveyed by the bypass.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsBypassTable' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A list of bypass table entries.  The number of
+entries is given by the value of upsBypassNumLines.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+table
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.5.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A list of bypass table entries.  The number of
+entries is given by the value of upsBypassNumLines.
+</property>
+</object>
+<object id='upsBypassVoltage' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The present bypass voltage.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.5.3.1.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The present bypass voltage.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsCompliances' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.3.1
+</property>
+</object>
+<object id='upsConfig' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.9
+</property>
+</object>
+<object id='upsConfigAudibleStatus' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The requested state of the audible alarm.  When in
+the disabled state, the audible alarm should never
+sound.  The enabled state is self-describing.  Setting
+this object to muted(3) when the audible alarm is
+sounding shall temporarily silence the alarm.  It will
+remain muted until it would normally stop sounding and
+the value returned for read operations during this
+period shall equal muted(3).  At the end of this
+period, the value shall revert to enabled(2).  Writes
+of the value muted(3) when the audible alarm is not
+sounding shall be accepted but otherwise shall have no
+effect.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.9.8
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The requested state of the audible alarm.  When in
+the disabled state, the audible alarm should never
+sound.  The enabled state is self-describing.  Setting
+this object to muted(3) when the audible alarm is
+sounding shall temporarily silence the alarm.  It will
+remain muted until it would normally stop sounding and
+the value returned for read operations during this
+period shall equal muted(3).  At the end of this
+period, the value shall revert to enabled(2).  Writes
+of the value muted(3) when the audible alarm is not
+sounding shall be accepted but otherwise shall have no
+effect.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsConfigHighVoltageTransferPoint' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The maximum line voltage allowed before the UPS
+system transfers to battery backup.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.9.10
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The maximum line voltage allowed before the UPS
+system transfers to battery backup.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsConfigInputFreq' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The nominal input frequency.  On those systems which
+support read-write access to this object, if there is
+an attempt to set this variable to a value that is not
+supported, the request must be rejected and the agent
+shall respond with an appropriate error message, i.e.,
+badValue for SNMPv1, or inconsistentValue for SNMPv2.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.9.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The nominal input frequency.  On those systems which
+support read-write access to this object, if there is
+an attempt to set this variable to a value that is not
+supported, the request must be rejected and the agent
+shall respond with an appropriate error message, i.e.,
+badValue for SNMPv1, or inconsistentValue for SNMPv2.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsConfigInputVoltage' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The magnitude of the nominal input voltage.  On those
+systems which support read-write access to this
+object, if there is an attempt to set this variable to
+a value that is not supported, the request must be
+rejected and the agent shall respond with an
+appropriate error message, i.e., badValue for SNMPv1,
+or inconsistentValue for SNMPv2.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.9.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The magnitude of the nominal input voltage.  On those
+systems which support read-write access to this
+object, if there is an attempt to set this variable to
+a value that is not supported, the request must be
+rejected and the agent shall respond with an
+appropriate error message, i.e., badValue for SNMPv1,
+or inconsistentValue for SNMPv2.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsConfigLowBattTime' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The value of upsEstimatedMinutesRemaining at which a
+lowBattery condition is declared.  For agents which
+support only discrete (discontinuous) values, then the
+agent shall round up to the next supported value.  If
+the requested value is larger than the largest
+supported value, then the largest supported value
+shall be selected.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.9.7
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The value of upsEstimatedMinutesRemaining at which a
+lowBattery condition is declared.  For agents which
+support only discrete (discontinuous) values, then the
+agent shall round up to the next supported value.  If
+the requested value is larger than the largest
+supported value, then the largest supported value
+shall be selected.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsConfigLowVoltageTransferPoint' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The minimum input line voltage allowed before the UPS
+system transfers to battery backup.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.9.9
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The minimum input line voltage allowed before the UPS
+system transfers to battery backup.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsConfigOutputFreq' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The nominal output frequency.  On those systems which
+support read-write access to this object, if there is
+an attempt to set this variable to a value that is not
+supported, the request must be rejected and the agent
+shall respond with an appropriate error message, i.e.,
+badValue for SNMPv1, or inconsistentValue for SNMPv2.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.9.4
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The nominal output frequency.  On those systems which
+support read-write access to this object, if there is
+an attempt to set this variable to a value that is not
+supported, the request must be rejected and the agent
+shall respond with an appropriate error message, i.e.,
+badValue for SNMPv1, or inconsistentValue for SNMPv2.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsConfigOutputPower' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The magnitude of the nominal true power rating.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.9.6
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The magnitude of the nominal true power rating.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsConfigOutputVA' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The magnitude of the nominal Volt-Amp rating.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.9.5
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The magnitude of the nominal Volt-Amp rating.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsConfigOutputVoltage' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The magnitude of the nominal output voltage.  On
+those systems which support read-write access to this
+object, if there is an attempt to set this variable to
+a value that is not supported, the request must be
+rejected and the agent shall respond with an
+appropriate error message, i.e., badValue for SNMPv1,
+or inconsistentValue for SNMPv2.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.9.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The magnitude of the nominal output voltage.  On
+those systems which support read-write access to this
+object, if there is an attempt to set this variable to
+a value that is not supported, the request must be
+rejected and the agent shall respond with an
+appropriate error message, i.e., badValue for SNMPv1,
+or inconsistentValue for SNMPv2.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsConformance' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.3
+</property>
+</object>
+<object id='upsControl' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.8
+</property>
+</object>
+<object id='upsEstimatedChargeRemaining' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+An estimate of the battery charge remaining expressed
+as a percent of full charge.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.2.4
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+An estimate of the battery charge remaining expressed
+as a percent of full charge.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsEstimatedMinutesRemaining' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+An estimate of the time to battery charge depletion
+under the present load conditions if the utility power
+is off and remains off, or if it were to be lost and
+remain off.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.2.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+An estimate of the time to battery charge depletion
+under the present load conditions if the utility power
+is off and remains off, or if it were to be lost and
+remain off.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsFullGroups' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.3.2.3
+</property>
+</object>
+<object id='upsGroups' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.3.2
+</property>
+</object>
+<object id='upsIdent' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.1
+</property>
+</object>
+<object id='upsIdentAgentSoftwareVersion' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The UPS agent software version.  This variable may or
+may not have the same value as
+upsIdentUPSSoftwareVersion in some implementations.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.1.4
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The UPS agent software version.  This variable may or
+may not have the same value as
+upsIdentUPSSoftwareVersion in some implementations.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsIdentAttachedDevices' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A string identifying the devices attached to the
+output(s) of the UPS.  This object should be set by
+the administrator.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.1.6
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A string identifying the devices attached to the
+output(s) of the UPS.  This object should be set by
+the administrator.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsIdentManufacturer' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The name of the UPS manufacturer.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.1.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The name of the UPS manufacturer.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsIdentModel' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The UPS Model designation.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.1.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The UPS Model designation.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsIdentName' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A string identifying the UPS.  This object should be
+set by the administrator.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.1.5
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A string identifying the UPS.  This object should be
+set by the administrator.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsIdentUPSSoftwareVersion' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The UPS firmware/software version(s).  This variable
+may or may not have the same value as
+upsIdentAgentSoftwareVersion in some implementations.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.1.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The UPS firmware/software version(s).  This variable
+may or may not have the same value as
+upsIdentAgentSoftwareVersion in some implementations.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsInput' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.3
+</property>
+</object>
+<object id='upsInputCurrent' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The magnitude of the present input current.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.3.3.1.4
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The magnitude of the present input current.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsInputEntry' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+An entry containing information applicable to a
+particular input line.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+row
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.3.3.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+An entry containing information applicable to a
+particular input line.
+</property>
+</object>
+<object id='upsInputFrequency' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The present input frequency.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.3.3.1.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The present input frequency.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsInputLineBads' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A count of the number of times the input entered an
+out-of-tolerance condition as defined by the
+manufacturer.  This count is incremented by one each
+time the input transitions from zero out-of-tolerance
+lines to one or more input lines out-of-tolerance.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.3.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A count of the number of times the input entered an
+out-of-tolerance condition as defined by the
+manufacturer.  This count is incremented by one each
+time the input transitions from zero out-of-tolerance
+lines to one or more input lines out-of-tolerance.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsInputLineIndex' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The input line identifier.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.3.3.1.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The input line identifier.
+</property>
+<property type="string" id="access" mode="w" >
+noaccess
+</property>
+</object>
+<object id='upsInputNumLines' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The number of input lines utilized in this device.
+This variable indicates the number of rows in the
+input table.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.3.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The number of input lines utilized in this device.
+This variable indicates the number of rows in the
+input table.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsInputTable' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A list of input table entries.  The number of entries
+is given by the value of upsInputNumLines.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+table
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.3.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A list of input table entries.  The number of entries
+is given by the value of upsInputNumLines.
+</property>
+</object>
+<object id='upsInputTruePower' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The magnitude of the present input true power.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.3.3.1.5
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The magnitude of the present input true power.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsInputVoltage' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The magnitude of the present input voltage.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.3.3.1.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The magnitude of the present input voltage.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsMIB' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+</object>
+<object id='upsObjects' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1
+</property>
+</object>
+<object id='upsOutput' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.4
+</property>
+</object>
+<object id='upsOutputCurrent' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The present output current.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.4.4.1.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The present output current.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsOutputEntry' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+An entry containing information applicable to a
+particular output line.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+row
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.4.4.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+An entry containing information applicable to a
+particular output line.
+</property>
+</object>
+<object id='upsOutputFrequency' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The present output frequency.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.4.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The present output frequency.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsOutputLineIndex' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The output line identifier.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.4.4.1.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The output line identifier.
+</property>
+<property type="string" id="access" mode="w" >
+noaccess
+</property>
+</object>
+<object id='upsOutputNumLines' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The number of output lines utilized in this device.
+This variable indicates the number of rows in the
+output table.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.4.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The number of output lines utilized in this device.
+This variable indicates the number of rows in the
+output table.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsOutputPercentLoad' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The percentage of the UPS power capacity presently
+being used on this output line, i.e., the greater of
+the percent load of true power capacity and the
+percent load of VA.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.4.4.1.5
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The percentage of the UPS power capacity presently
+being used on this output line, i.e., the greater of
+the percent load of true power capacity and the
+percent load of VA.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsOutputPower' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The present output true power.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.4.4.1.4
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The present output true power.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsOutputSource' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The present source of output power.  The enumeration
+none(2) indicates that there is no source of output
+power (and therefore no output power), for example,
+the system has opened the output breaker.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.4.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The present source of output power.  The enumeration
+none(2) indicates that there is no source of output
+power (and therefore no output power), for example,
+the system has opened the output breaker.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsOutputTable' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A list of output table entries.  The number of
+entries is given by the value of upsOutputNumLines.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+table
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.4.4
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A list of output table entries.  The number of
+entries is given by the value of upsOutputNumLines.
+</property>
+</object>
+<object id='upsOutputVoltage' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The present output voltage.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+column
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.4.4.1.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The present output voltage.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsRebootWithDuration' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+Setting this object will immediately shutdown (i.e.,
+turn off) either the UPS output or the UPS system (as
+determined by the value of upsShutdownType at the time
+of shutdown) for a period equal to the indicated
+number of seconds, after which time the output will be
+started, including starting the UPS, if necessary.  If
+the number of seconds required to perform the request
+is greater than the requested duration, then the
+requested shutdown and startup cycle shall be
+performed in the minimum time possible, but in no case
+shall this require more than the requested duration
+plus 60 seconds.  When read, upsRebootWithDuration
+shall return the number of seconds remaining in the
+countdown, or -1 if no countdown is in progress.  If
+the startup should occur during a utility failure, the
+startup shall not occur until the utility power is
+restored.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.8.4
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+Setting this object will immediately shutdown (i.e.,
+turn off) either the UPS output or the UPS system (as
+determined by the value of upsShutdownType at the time
+of shutdown) for a period equal to the indicated
+number of seconds, after which time the output will be
+started, including starting the UPS, if necessary.  If
+the number of seconds required to perform the request
+is greater than the requested duration, then the
+requested shutdown and startup cycle shall be
+performed in the minimum time possible, but in no case
+shall this require more than the requested duration
+plus 60 seconds.  When read, upsRebootWithDuration
+shall return the number of seconds remaining in the
+countdown, or -1 if no countdown is in progress.  If
+the startup should occur during a utility failure, the
+startup shall not occur until the utility power is
+restored.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsSecondsOnBattery' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+If the unit is on battery power, the elapsed time
+since the UPS last switched to battery power, or the
+time since the network management subsystem was last
+restarted, whichever is less.  Zero shall be returned
+if the unit is not on battery power.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.2.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+If the unit is on battery power, the elapsed time
+since the UPS last switched to battery power, or the
+time since the network management subsystem was last
+restarted, whichever is less.  Zero shall be returned
+if the unit is not on battery power.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsShutdownAfterDelay' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+Setting this object will shutdown (i.e., turn off)
+either the UPS output or the UPS system (as determined
+by the value of upsShutdownType at the time of
+shutdown) after the indicated number of seconds, or
+less if the UPS batteries become depleted. Setting
+this object to 0 will cause the shutdown to occur
+immediately.  Setting this object to -1 will abort the
+countdown.  If the system is already in the desired
+state at the time the countdown reaches 0, then
+nothing will happen.  That is, there is no additional
+action at that time if upsShutdownType = system and
+the system is already off.  Similarly, there is no
+additional action at that time if upsShutdownType =
+output and the output is already off.  When read,
+upsShutdownAfterDelay will return the number of
+seconds remaining until shutdown, or -1 if no shutdown
+countdown is in effect.  On some systems, if the agent
+is restarted while a shutdown countdown is in effect,
+the countdown may be aborted.  Sets to this object
+override any upsShutdownAfterDelay already in effect.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.8.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+Setting this object will shutdown (i.e., turn off)
+either the UPS output or the UPS system (as determined
+by the value of upsShutdownType at the time of
+shutdown) after the indicated number of seconds, or
+less if the UPS batteries become depleted. Setting
+this object to 0 will cause the shutdown to occur
+immediately.  Setting this object to -1 will abort the
+countdown.  If the system is already in the desired
+state at the time the countdown reaches 0, then
+nothing will happen.  That is, there is no additional
+action at that time if upsShutdownType = system and
+the system is already off.  Similarly, there is no
+additional action at that time if upsShutdownType =
+output and the output is already off.  When read,
+upsShutdownAfterDelay will return the number of
+seconds remaining until shutdown, or -1 if no shutdown
+countdown is in effect.  On some systems, if the agent
+is restarted while a shutdown countdown is in effect,
+the countdown may be aborted.  Sets to this object
+override any upsShutdownAfterDelay already in effect.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsShutdownType' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+This object determines the nature of the action to be
+taken at the time when the countdown of the
+upsShutdownAfterDelay and upsRebootWithDuration
+objects reaches zero.
+
+Setting this object to output(1) indicates that
+shutdown requests should cause only the output of the
+UPS to turn off.  Setting this object to system(2)
+indicates that shutdown requests will cause the entire
+UPS system to turn off.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.8.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+This object determines the nature of the action to be
+taken at the time when the countdown of the
+upsShutdownAfterDelay and upsRebootWithDuration
+objects reaches zero.
+
+Setting this object to output(1) indicates that
+shutdown requests should cause only the output of the
+UPS to turn off.  Setting this object to system(2)
+indicates that shutdown requests will cause the entire
+UPS system to turn off.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsStartupAfterDelay' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+Setting this object will start the output after the
+indicated number of seconds, including starting the
+UPS, if necessary.  Setting this object to 0 will
+cause the startup to occur immediately.  Setting this
+object to -1 will abort the countdown.  If the output
+is already on at the time the countdown reaches 0,
+then nothing will happen.  Sets to this object
+override the effect of any upsStartupAfterDelay
+countdown or upsRebootWithDuration countdown in
+progress.  When read, upsStartupAfterDelay will return
+the number of seconds until startup, or -1 if no
+startup countdown is in effect.  If the countdown
+expires during a utility failure, the startup shall
+not occur until the utility power is restored.  On
+some systems, if the agent is restarted while a
+startup countdown is in effect, the countdown is
+aborted.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.8.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+Setting this object will start the output after the
+indicated number of seconds, including starting the
+UPS, if necessary.  Setting this object to 0 will
+cause the startup to occur immediately.  Setting this
+object to -1 will abort the countdown.  If the output
+is already on at the time the countdown reaches 0,
+then nothing will happen.  Sets to this object
+override the effect of any upsStartupAfterDelay
+countdown or upsRebootWithDuration countdown in
+progress.  When read, upsStartupAfterDelay will return
+the number of seconds until startup, or -1 if no
+startup countdown is in effect.  If the countdown
+expires during a utility failure, the startup shall
+not occur until the utility power is restored.  On
+some systems, if the agent is restarted while a
+startup countdown is in effect, the countdown is
+aborted.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsSubsetGroups' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.3.2.1
+</property>
+</object>
+<object id='upsTest' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7
+</property>
+</object>
+<object id='upsTestAbortTestInProgress' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The test in progress is to be aborted / the test in
+progress was aborted.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7.7.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The test in progress is to be aborted / the test in
+progress was aborted.
+</property>
+</object>
+<object id='upsTestDeepBatteryCalibration' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The system is placed on battery to a discharge level,
+set by the manufacturer, sufficient to determine
+battery replacement and battery run-time with a high
+degree of confidence.  WARNING:  this test will leave
+the battery in a low charge state and will require
+time for recharging to a level sufficient to provide
+normal battery duration for the protected load.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7.7.5
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The system is placed on battery to a discharge level,
+set by the manufacturer, sufficient to determine
+battery replacement and battery run-time with a high
+degree of confidence.  WARNING:  this test will leave
+the battery in a low charge state and will require
+time for recharging to a level sufficient to provide
+normal battery duration for the protected load.
+</property>
+</object>
+<object id='upsTestElapsedTime' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The amount of time, in TimeTicks, since the test in
+progress was initiated, or, if no test is in progress,
+the previous test took to complete.  If the value of
+upsTestResultsSummary is noTestsInitiated(6),
+upsTestElapsedTime has the value 0.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7.6
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The amount of time, in TimeTicks, since the test in
+progress was initiated, or, if no test is in progress,
+the previous test took to complete.  If the value of
+upsTestResultsSummary is noTestsInitiated(6),
+upsTestElapsedTime has the value 0.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsTestGeneralSystemsTest' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The manufacturer's standard test of UPS device
+systems.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7.7.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The manufacturer's standard test of UPS device
+systems.
+</property>
+</object>
+<object id='upsTestId' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The test is named by an OBJECT IDENTIFIER which
+allows a standard mechanism for the initiation of
+tests, including the well known tests identified in
+this document as well as those introduced by a
+particular implementation, i.e., as documented in the
+private enterprise MIB definition for the device.
+
+Setting this variable initiates the named test. Sets
+to this variable require the presence of
+upsTestSpinLock in the same SNMP message.
+
+The set request will be rejected with an appropriate
+error message if the requested test cannot be
+performed, including attempts to start a test when
+another test is already in progress.  The status of
+the current or last test is maintained in
+upsTestResultsSummary. Tests in progress may be
+aborted by setting the upsTestId variable to
+upsTestAbortTestInProgress.
+
+Read operations return the value of the name of the
+test in progress if a test is in progress or the name
+of the last test performed if no test is in progress,
+unless no test has been run, in which case the well
+known value upsTestNoTestsInitiated is returned.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The test is named by an OBJECT IDENTIFIER which
+allows a standard mechanism for the initiation of
+tests, including the well known tests identified in
+this document as well as those introduced by a
+particular implementation, i.e., as documented in the
+private enterprise MIB definition for the device.
+
+Setting this variable initiates the named test. Sets
+to this variable require the presence of
+upsTestSpinLock in the same SNMP message.
+
+The set request will be rejected with an appropriate
+error message if the requested test cannot be
+performed, including attempts to start a test when
+another test is already in progress.  The status of
+the current or last test is maintained in
+upsTestResultsSummary. Tests in progress may be
+aborted by setting the upsTestId variable to
+upsTestAbortTestInProgress.
+
+Read operations return the value of the name of the
+test in progress if a test is in progress or the name
+of the last test performed if no test is in progress,
+unless no test has been run, in which case the well
+known value upsTestNoTestsInitiated is returned.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsTestNoTestsInitiated' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+No tests have been initiated and no test is in
+progress.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7.7.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+No tests have been initiated and no test is in
+progress.
+</property>
+</object>
+<object id='upsTestQuickBatteryTest' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A test that is sufficient to determine if the battery
+needs replacement.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7.7.4
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A test that is sufficient to determine if the battery
+needs replacement.
+</property>
+</object>
+<object id='upsTestResultsDetail' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+Additional information about upsTestResultsSummary.
+If no additional information available, a zero length
+string is returned.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7.4
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+Additional information about upsTestResultsSummary.
+If no additional information available, a zero length
+string is returned.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsTestResultsSummary' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The results of the current or last UPS diagnostics
+test performed.  The values for donePass(1),
+doneWarning(2), and doneError(3) indicate that the
+test completed either successfully, with a warning, or
+with an error, respectively.  The value aborted(4) is
+returned for tests which are aborted by setting the
+value of upsTestId to upsTestAbortTestInProgress.
+Tests which have not yet concluded are indicated by
+inProgress(5).  The value noTestsInitiated(6)
+indicates that no previous test results are available,
+such as is the case when no tests have been run since
+the last reinitialization of the network management
+subsystem and the system has no provision for non-
+volatile storage of test results.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The results of the current or last UPS diagnostics
+test performed.  The values for donePass(1),
+doneWarning(2), and doneError(3) indicate that the
+test completed either successfully, with a warning, or
+with an error, respectively.  The value aborted(4) is
+returned for tests which are aborted by setting the
+value of upsTestId to upsTestAbortTestInProgress.
+Tests which have not yet concluded are indicated by
+inProgress(5).  The value noTestsInitiated(6)
+indicates that no previous test results are available,
+such as is the case when no tests have been run since
+the last reinitialization of the network management
+subsystem and the system has no provision for non-
+volatile storage of test results.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsTestSpinLock' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+A spin lock on the test subsystem.  The spinlock is
+used as follows.
+
+Before starting a test, a manager-station should make
+sure that a test is not in progress as follows:
+
+    try_again:
+      get (upsTestSpinLock)
+      while (upsTestResultsSummary == inProgress) {
+        /* loop while a test is running for another
+manager */
+        short delay
+        get (upsTestSpinLock)
+      }
+      lock_value = upsTestSpinLock
+      /* no test in progress, start the test */
+      set (upsTestSpinLock = lock_value, upsTestId =
+requested_test)
+      if (error_index == 1) { /* (upsTestSpinLock
+failed) */
+        /* if problem is not access control, then
+            some other manager slipped in ahead of us
+*/
+        goto try_again
+      }
+      if (error_index == 2) { /* (upsTestId) */
+        /* cannot perform the test */
+        give up
+      }
+      /* test started ok */
+      /* wait for test completion by polling
+upsTestResultsSummary */
+      get (upsTestSpinLock, upsTestResultsSummary,
+upsTestResultsDetail)
+      while (upsTestResultsSummary == inProgress) {
+        short delay
+        get (upsTestSpinLock, upsTestResultsSummary,
+upsTestResultsDetail)
+      }
+      /* when test completes, retrieve any additional
+test results */
+      /* if upsTestSpinLock == lock_value + 1, then
+these are our test */
+      /* results (as opposed to another manager's */
+      The initial value of upsTestSpinLock at agent
+initialization shall
+      be 1.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+A spin lock on the test subsystem.  The spinlock is
+used as follows.
+
+Before starting a test, a manager-station should make
+sure that a test is not in progress as follows:
+
+    try_again:
+      get (upsTestSpinLock)
+      while (upsTestResultsSummary == inProgress) {
+        /* loop while a test is running for another
+manager */
+        short delay
+        get (upsTestSpinLock)
+      }
+      lock_value = upsTestSpinLock
+      /* no test in progress, start the test */
+      set (upsTestSpinLock = lock_value, upsTestId =
+requested_test)
+      if (error_index == 1) { /* (upsTestSpinLock
+failed) */
+        /* if problem is not access control, then
+            some other manager slipped in ahead of us
+*/
+        goto try_again
+      }
+      if (error_index == 2) { /* (upsTestId) */
+        /* cannot perform the test */
+        give up
+      }
+      /* test started ok */
+      /* wait for test completion by polling
+upsTestResultsSummary */
+      get (upsTestSpinLock, upsTestResultsSummary,
+upsTestResultsDetail)
+      while (upsTestResultsSummary == inProgress) {
+        short delay
+        get (upsTestSpinLock, upsTestResultsSummary,
+upsTestResultsDetail)
+      }
+      /* when test completes, retrieve any additional
+test results */
+      /* if upsTestSpinLock == lock_value + 1, then
+these are our test */
+      /* results (as opposed to another manager's */
+      The initial value of upsTestSpinLock at agent
+initialization shall
+      be 1.
+</property>
+<property type="string" id="access" mode="w" >
+readwrite
+</property>
+</object>
+<object id='upsTestStartTime' module='Products.ZenModel.MibNode' class='MibNode'>
+<property id='zendoc' type='string'>
+The value of sysUpTime at the time the test in
+progress was initiated, or, if no test is in progress,
+the time the previous test was initiated.  If the
+value of upsTestResultsSummary is noTestsInitiated(6),
+upsTestStartTime has the value 0.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+scalar
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7.5
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The value of sysUpTime at the time the test in
+progress was initiated, or, if no test is in progress,
+the time the previous test was initiated.  If the
+value of upsTestResultsSummary is noTestsInitiated(6),
+upsTestStartTime has the value 0.
+</property>
+<property type="string" id="access" mode="w" >
+readonly
+</property>
+</object>
+<object id='upsTraps' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.2
+</property>
+</object>
+<object id='upsWellKnownAlarms' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.6.3
+</property>
+</object>
+<object id='upsWellKnownTests' module='Products.ZenModel.MibNode' class='MibNode'>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+node
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.1.7.7
+</property>
+</object>
+</tomanycont>
+<tomanycont id='notifications'>
+<object id='upsTrapAlarmEntryAdded' module='Products.ZenModel.MibNotification' class='MibNotification'>
+<property id='zendoc' type='string'>
+This trap is sent each time an alarm is inserted into
+to the alarm table.  It is sent on the insertion of
+all alarms except for upsAlarmOnBattery and
+upsAlarmTestInProgress.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+notification
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.2.3
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+This trap is sent each time an alarm is inserted into
+to the alarm table.  It is sent on the insertion of
+all alarms except for upsAlarmOnBattery and
+upsAlarmTestInProgress.
+</property>
+<property type="lines" id="objects" mode="w" >
+{'upsAlarmId': {'nodetype': 'object', 'module': 'UPS-MIB'}, 'upsAlarmDescr': {'nodetype': 'object', 'module': 'UPS-MIB'}}
+</property>
+</object>
+<object id='upsTrapAlarmEntryRemoved' module='Products.ZenModel.MibNotification' class='MibNotification'>
+<property id='zendoc' type='string'>
+This trap is sent each time an alarm is removed from
+the alarm table.  It is sent on the removal of all
+alarms except for upsAlarmTestInProgress.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+notification
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.2.4
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+This trap is sent each time an alarm is removed from
+the alarm table.  It is sent on the removal of all
+alarms except for upsAlarmTestInProgress.
+</property>
+<property type="lines" id="objects" mode="w" >
+{'upsAlarmId': {'nodetype': 'object', 'module': 'UPS-MIB'}, 'upsAlarmDescr': {'nodetype': 'object', 'module': 'UPS-MIB'}}
+</property>
+</object>
+<object id='upsTrapOnBattery' module='Products.ZenModel.MibNotification' class='MibNotification'>
+<property id='zendoc' type='string'>
+The UPS is operating on battery power.  This trap is
+persistent and is resent at one minute intervals until
+the UPS either turns off or is no longer running on
+battery.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+notification
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.2.1
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+The UPS is operating on battery power.  This trap is
+persistent and is resent at one minute intervals until
+the UPS either turns off or is no longer running on
+battery.
+</property>
+<property type="lines" id="objects" mode="w" >
+{'upsEstimatedMinutesRemaining': {'nodetype': 'object', 'module': 'UPS-MIB'}, 'upsSecondsOnBattery': {'nodetype': 'object', 'module': 'UPS-MIB'}, 'upsConfigLowBattTime': {'nodetype': 'object', 'module': 'UPS-MIB'}}
+</property>
+</object>
+<object id='upsTrapTestCompleted' module='Products.ZenModel.MibNotification' class='MibNotification'>
+<property id='zendoc' type='string'>
+This trap is sent upon completion of a UPS diagnostic
+test.
+</property>
+<property type="string" id="moduleName" mode="w" >
+UPS-MIB
+</property>
+<property type="string" id="nodetype" mode="w" >
+notification
+</property>
+<property type="string" id="oid" mode="w" >
+1.3.6.1.2.1.33.2.2
+</property>
+<property type="string" id="status" mode="w" >
+current
+</property>
+<property type="string" id="description" mode="w" >
+This trap is sent upon completion of a UPS diagnostic
+test.
+</property>
+<property type="lines" id="objects" mode="w" >
+{'upsTestStartTime': {'nodetype': 'object', 'module': 'UPS-MIB'}, 'upsTestElapsedTime': {'nodetype': 'object', 'module': 'UPS-MIB'}, 'upsTestId': {'nodetype': 'object', 'module': 'UPS-MIB'}, 'upsTestSpinLock': {'nodetype': 'object', 'module': 'UPS-MIB'}, 'upsTestResultsSummary': {'nodetype': 'object', 'module': 'UPS-MIB'}, 'upsTestResultsDetail': {'nodetype': 'object', 'module': 'UPS-MIB'}}
+</property>
+</object>
+</tomanycont>
+</object>
+</objects>

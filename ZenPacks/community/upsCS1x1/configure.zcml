@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:zcml="http://namespaces.zope.org/zcml">
+
+    <configure zcml:condition="installed Products.Zuul">
+
+
+        <adapter factory=".info.upsBatteryInfo"
+                 for=".upsBattery.upsBattery"
+                 provides=".interfaces.IupsBatteryInfo"
+                 />
+
+        <adapter factory=".info.upsInputInfo"
+                 for=".upsInput.upsInput"
+                 provides=".interfaces.IupsInputInfo"
+                 />
+
+        <adapter factory=".info.upsOutputInfo"
+                 for=".upsOutput.upsOutput"
+                 provides=".interfaces.IupsOutputInfo"
+                 />
+
+        <adapter factory=".info.upsBypassInfo"
+                 for=".upsBypass.upsBypass"
+                 provides=".interfaces.IupsBypassInfo"
+                 />
+
+        <browser:resourceDirectory
+                 name="upsCS1x1"
+                 directory="resources"
+                 />
+
+        <browser:viewlet
+                 name="js-upsCS1x1"
+                 for=".upsDevice.upsDevice"
+                 paths="/++resource++upsCS1x1/upsCS1x1.js"
+                 weight="10"
+                 manager="Products.ZenUI3.browser.interfaces.IJavaScriptSrcManager"
+                 class="Products.ZenUI3.browser.javascript.JavaScriptSrcBundleViewlet"
+                 permission="zope2.Public"
+                 />
+    </configure>
+</configure>
